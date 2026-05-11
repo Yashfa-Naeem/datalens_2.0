@@ -344,3 +344,5 @@ def chat_with_dataset(body: ChatRequest, db: Session = Depends(get_db)) -> ChatR
             status_code=502,
             detail=f"Chat request failed: {e!s}",
         ) from e
+#   C h a t   R o u t e r  
+ 
