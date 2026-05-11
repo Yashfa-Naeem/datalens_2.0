@@ -310,3 +310,5 @@ def load_dataset_table_sample(
 def load_dataset_for_profile(dataset: Dataset) -> tuple[pd.DataFrame, bool]:
     cap = min(ANALYSIS_ROW_CAP, max(1, dataset.row_count))
     return load_dataset_table_sample(dataset, limit=cap)
+#   C S V   U p l o a d   R o u t e r  
+ 
