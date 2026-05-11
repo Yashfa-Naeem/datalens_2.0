@@ -15,7 +15,7 @@ export default function UploadSection({ onUploadSuccess }) {
         const form = new FormData();
         form.append("file", file);
         try {
-            const res = await axios.post("http://localhost:8000/upload", form);
+            const res = await axios.post("http://localhost:8000/api/upload", form);
             onUploadSuccess(res.data.dataset_id, file.name);
         } catch (e) {
             setError(e.response?.data?.detail || "Upload failed. Make sure the backend is running.");

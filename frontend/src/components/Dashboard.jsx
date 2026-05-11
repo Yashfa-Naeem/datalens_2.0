@@ -7,7 +7,7 @@ import {
 import FilterPanel from "./FilterPanel";
 
 const COLORS = ["#38bdf8", "#818cf8", "#34d399", "#f87171", "#fbbf24", "#e879f9", "#fb923c", "#a3e635"];
-const API = "http://localhost:8000";
+const API = "http://localhost:8000/api";
 
 export default function Dashboard({ datasetId, datasetName, onReset }) {
     const [profile, setProfile] = useState(null);
