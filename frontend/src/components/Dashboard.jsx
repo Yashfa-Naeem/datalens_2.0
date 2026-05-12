@@ -1,3 +1,5 @@
+import ChatPanel from "./ChatPanel";
+import ExecutiveSummary from "./ExecutiveSummary";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -123,6 +125,9 @@ export default function Dashboard({ datasetId, datasetName, onReset }) {
 
                 </div>
             )}
+        
+        <ChatPanel datasetId={datasetId} />
+        <ExecutiveSummary datasetId={datasetId} />
         </div>
     );
 }
