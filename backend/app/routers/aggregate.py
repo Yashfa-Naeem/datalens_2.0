@@ -5,9 +5,10 @@ router = APIRouter()
 def get_df():
     return pd.read_sql("SELECT * FROM dataset_main", engine)
 def get_categorical_cols(df):
-    return [col for col in df.columns if df[col].dtype == "object"]
+    cats = [col for col in df.columns if str(df[col].dtype) in ["object", "string", "str"]]
+    return [col for col in cats if df[col].nunique() < 50]
 def get_numeric_cols(df):
-    return [col for col in df.columns if df[col].dtype in ["int64", "float64"]]
+    return [col for col in df.columns if str(df[col].dtype) in ["int64", "float64", "int32", "float32"]]
 @router.get("/aggregate")
 def aggregate(dataset_id: int = 1, groupby: str = "", filter_col: str = "", filter_val: str = ""):
     try:
@@ -39,17 +40,18 @@ def get_profile_by_id(dataset_id: int):
             col_data["type"] = str(df[col].dtype)
             col_data["null_count"] = int(df[col].isnull().sum())
             col_data["unique_count"] = int(df[col].nunique())
-            if df[col].dtype in ["int64", "float64"]:
+            if str(df[col].dtype) in ["int64", "float64"]:
                 col_data["min"] = float(df[col].min()) if not pd.isna(df[col].min()) else None
                 col_data["max"] = float(df[col].max()) if not pd.isna(df[col].max()) else None
                 col_data["mean"] = float(df[col].mean()) if not pd.isna(df[col].mean()) else None
             else:
                 col_data["top_values"] = df[col].value_counts().head(5).to_dict()
             profile[col] = col_data
-        cat_cols = get_categorical_cols(df)
+        cat_cols = [col for col in df.columns if str(df[col].dtype) in ["object", "string", "str"] and df[col].nunique() < 50]
+        num_cols = [col for col in df.columns if str(df[col].dtype) in ["int64", "float64"]]
         filters = {}
         for col in cat_cols[:3]:
             filters[col] = df[col].unique().tolist()[:50]
-        return {"profile": profile, "row_count": len(df), "column_count": len(df.columns), "filters": filters, "categorical_cols": cat_cols, "numeric_cols": get_numeric_cols(df)}
+        return {"profile": profile, "row_count": len(df), "column_count": len(df.columns), "filters": filters, "categorical_cols": cat_cols, "numeric_cols": num_cols}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
