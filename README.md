@@ -270,7 +270,7 @@ If you later run `.ps1` scripts and get blocked, your administrator may need to 
 | **[Friend 1 name]** | Frontend (React, Vite, Tailwind, charts) |
 | **[Friend 2 name]** | LLM / Chat (Groq integration, prompts, tool-calling) |
 
-Replace **[Friend 1 name]** and **[Friend 2 name]** with your teammates’ names when you finalize the README.
+
 
 ---
 
