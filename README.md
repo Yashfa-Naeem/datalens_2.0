@@ -2,8 +2,8 @@
 DataLens is a web application that allows users to upload any CSV file and automatically generate an interactive analytics dashboard with AI-powered chat and executive summaries.
 ## Team Members
 - Yashfa Naeem - Backend (FastAPI, SQLite, Data Profiling, API Endpoints)
-- Friend 1 - Frontend (React, Recharts, Dashboard UI)
-- Friend 2 - LLM Integration (Groq Chat, Executive Summary)
+- Manal Iftikhar - Frontend (React, Recharts, Dashboard UI)
+- Maria Masood - LLM Integration (Groq Chat, Executive Summary)
 ## Dataset
 2015 US Flight Delays and Cancellations (5.8M rows)
 ## Prerequisites
