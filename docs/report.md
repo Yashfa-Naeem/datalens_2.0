@@ -24,3 +24,9 @@ The agent also did well at understanding the tool-calling pattern for Groq integ
 - test-driven-development: Reminded us to write tests alongside code
 - documentation-and-adrs: Prompted us to document decisions as they happened
 - git-workflow-and-versioning: Kept our commits atomic and descriptive
+
+## Maria's Contribution
+
+I built the LLM Chat Interface (ChatPanel.jsx) and Executive Summary 
+(ExecutiveSummary.jsx) components. These connect to the Groq AI backend 
+to provide natural language data querying and automated insights generation.
