@@ -13,12 +13,14 @@ def get_summary(dataset_id: int = 1):
     try:
         df = pd.read_sql("SELECT * FROM dataset_main LIMIT 1000", engine)
         client = Groq(api_key=api_key)
-        stats = f"Dataset: {len(df)} rows, {len(df.columns)} columns: {list(df.columns)}. Stats: {df.describe().to_string()}"
+        cols = list(df.columns)
+        stats = df.describe().to_string()
+        sample = df.head(3).to_string()
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[
-                {"role": "system", "content": "You are a business analyst. Write a concise executive summary."},
-                {"role": "user", "content": f"Write an executive summary for this flight delays dataset: {stats}"}
+                {"role": "system", "content": "You are a business analyst. Write a concise executive summary based only on the actual data provided."},
+                {"role": "user", "content": f"Write an executive summary for this dataset. Columns: {cols}. Sample data: {sample}. Statistics: {stats}"}
             ]
         )
         return {"summary": response.choices[0].message.content}

@@ -16,11 +16,14 @@ def chat(request: ChatRequest):
     try:
         df = pd.read_sql("SELECT * FROM dataset_main LIMIT 1000", engine)
         client = Groq(api_key=api_key)
-        context = f"Dataset has {len(df)} rows and columns: {list(df.columns)}. Sample: {df.head(3).to_string()}"
+        cols = list(df.columns)
+        sample = df.head(5).to_string()
+        stats = df.describe().to_string()
+        context = f"Dataset has {len(df)} rows and {len(df.columns)} columns. Columns: {cols}. Sample data: {sample}. Statistics: {stats}"
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[
-                {"role": "system", "content": f"You are a data analyst. Answer questions about this flight delays dataset: {context}"},
+                {"role": "system", "content": f"You are a data analyst. Answer questions based ONLY on this dataset. Do not assume anything not in the data. Dataset info: {context}"},
                 {"role": "user", "content": request.message}
             ]
         )
