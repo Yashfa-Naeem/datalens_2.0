@@ -25,8 +25,20 @@ The agent also did well at understanding the tool-calling pattern for Groq integ
 - documentation-and-adrs: Prompted us to document decisions as they happened
 - git-workflow-and-versioning: Kept our commits atomic and descriptive
 
-## Maria's Contribution
+## Team Contributions
 
-I built the LLM Chat Interface (ChatPanel.jsx) and Executive Summary 
-(ExecutiveSummary.jsx) components. These connect to the Groq AI backend 
-to provide natural language data querying and automated insights generation.
+**Yashfa Naeem** — Built the complete backend using FastAPI including all 
+API endpoints, SQLite database setup, data profiling, CSV upload, and Groq 
+AI integration with tool-calling pattern. Also handled project setup, 
+GitHub repository, agent skills installation, and documentation.
+
+**Manal Iftikhar** — Built the frontend dashboard including all 
+visualizations using Recharts, global filters, upload UI, and overall 
+frontend architecture using React and Tailwind CSS.
+
+**Maria Masood** — Built the AI-powered frontend features. Created 
+ChatPanel.jsx which lets users ask natural language questions about their 
+data and receive real data-grounded answers from Groq AI. Created 
+ExecutiveSummary.jsx which generates a one-click professional business 
+summary of the uploaded dataset. Both components are integrated into the 
+main Dashboard and connect to the backend AI endpoints.
